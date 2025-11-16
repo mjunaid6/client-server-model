@@ -46,18 +46,18 @@ public class ClientHandler implements Runnable {
 
                 switch (command) {
                     case "reg":
-                        register(parts);
+                        handleRegister(parts);
                         break;
 
                     case "msg":
-                        privateMsg(parts);
+                        handlePrivateMsg(parts);
                         break;
                     case "au":
-                        listUsers();
+                        handleListUsers();
                         break;
                     case "ur":
                     case "exit":
-                        unregister();
+                        handleUnregister();
                         return;
                     default:
                         send("Unknown command!");
@@ -77,7 +77,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void register(String[] parts) {
+    private void handleRegister(String[] parts) {
         if (parts.length < 2) {
             send("Usage: REG <username>");
             return;
@@ -91,7 +91,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void unregister() {
+    private void handleUnregister() {
         if (username != null) {
             server.unregisterUser(username);
             send("Unregistered " + username);
@@ -99,7 +99,7 @@ public class ClientHandler implements Runnable {
         close();
     }
 
-    private void privateMsg(String[] parts) {
+    private void handlePrivateMsg(String[] parts) {
         if (parts.length < 3) {
             send("Wrong Usage of MSG <user> <message>");
             return;
@@ -116,7 +116,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void listUsers() {
+    private void handleListUsers() {
         Set<String> users = server.getAllUsers();
         send("Users:");
         users.forEach(user -> send(user));
