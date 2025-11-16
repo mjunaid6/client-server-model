@@ -33,6 +33,7 @@ public class ClientHandler implements Runnable {
         send("Commands:");
         send("Register: REG <username>");
         send("Message: MSG <user> <msg>");
+        send("Broadcast Message: BM <msg>");
         send("Get all users: AU");
         send("Unregister: UR");
         send("Exit: EXIT");
@@ -54,6 +55,9 @@ public class ClientHandler implements Runnable {
                         break;
                     case "au":
                         handleListUsers();
+                        break;
+                    case "bm":
+                        handleBroadcastMsg(parts);
                         break;
                     case "ur":
                     case "exit":
@@ -79,7 +83,7 @@ public class ClientHandler implements Runnable {
 
     private void handleRegister(String[] parts) {
         if (parts.length < 2) {
-            send("Usage: REG <username>");
+            send("Wrong Usage: REG <username>");
             return;
         }
 
@@ -114,6 +118,22 @@ public class ClientHandler implements Runnable {
         } else {
             send("User not found");
         }
+    }
+
+    private void handleBroadcastMsg(String[] parts) {
+        if (parts.length < 2) {
+            send("Wrong Usage of BM <message>");
+            return;
+        }
+        if (username == null) {
+            send("Register first!");
+            return;
+        }
+
+        String msg = parts[1] + (parts.length == 3 ? parts[2] : "");
+
+        if(server.sendBroadcast(username,msg)) send("Broadcast message sent.");
+        else send("No users online to send broadcast.");
     }
 
     private void handleListUsers() {

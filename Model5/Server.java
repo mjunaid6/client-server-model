@@ -77,7 +77,7 @@ public class Server {
 
         int msgId = MESSAGE_ID++;
 
-        target.send("MSG#" + msgId + " Message from " + from + ": " + message);
+        target.send("MSG#" + msgId + " Private Message from " + from + ": " + message);
 
         scheduler.schedule(() -> {
             target.send("DELETE#" + msgId);
@@ -86,5 +86,23 @@ public class Server {
         return true;
     }
 
+    public boolean sendBroadcast(String from, String message) {
+        Set<String> users = clients.keySet();
+        if(users.size() < 2) return false;
 
+        for (String user : users) {
+            if (!user.equals(from)) {
+                ClientHandler target = clients.get(user);
+                int msgId = MESSAGE_ID++;
+                String finalMessage = "MSG#" + msgId + " Broadcast Message from " + from + ": " + message;
+                target.send(finalMessage);
+
+                scheduler.schedule(() -> {
+                    target.send("DELETE#" + msgId);
+                }, DELETE_TIMER, TimeUnit.SECONDS);
+            }
+        }
+
+        return true;
+    }
 }
