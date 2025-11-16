@@ -49,7 +49,6 @@ public class ClientHandler implements Runnable {
                     case "reg":
                         handleRegister(parts);
                         break;
-
                     case "msg":
                         handlePrivateMsg(parts);
                         break;
@@ -57,12 +56,15 @@ public class ClientHandler implements Runnable {
                         handleListUsers();
                         break;
                     case "bm":
-                        handleBroadcastMsg(parts);
+                        handleBroadcastMsg(line.substring(3));
                         break;
                     case "ur":
-                    case "exit":
                         handleUnregister();
-                        return;
+                        break;
+                    case "exit":{
+                        handleUnregister();
+                        close();
+                        return;}
                     default:
                         send("Unknown command!");
                 }
@@ -99,8 +101,11 @@ public class ClientHandler implements Runnable {
         if (username != null) {
             server.unregisterUser(username);
             send("Unregistered " + username);
+            username = null;
         }
-        close();
+        else{
+            send("You are not registered.");
+        }
     }
 
     private void handlePrivateMsg(String[] parts) {
@@ -120,17 +125,11 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void handleBroadcastMsg(String[] parts) {
-        if (parts.length < 2) {
-            send("Wrong Usage of BM <message>");
-            return;
-        }
+    private void handleBroadcastMsg(String msg) {
         if (username == null) {
             send("Register first!");
             return;
         }
-
-        String msg = parts[1] + (parts.length == 3 ? parts[2] : "");
 
         if(server.sendBroadcast(username,msg)) send("Broadcast message sent.");
         else send("No users online to send broadcast.");

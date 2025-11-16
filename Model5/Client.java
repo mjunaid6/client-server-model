@@ -76,7 +76,7 @@ public class Client {
                     output.newLine();
                     output.flush();
 
-                    if (line.equalsIgnoreCase("exit") || line.equalsIgnoreCase("ur")) {
+                    if (line.equalsIgnoreCase("exit")) {
                         socket.close();  
                         break;           
                     }
