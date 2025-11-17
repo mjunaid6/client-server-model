@@ -109,18 +109,18 @@ public class Client {
     }
 
     public static void main(String[] args) throws Exception {
-        // Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-        // System.out.print("Enter server IP (e.g., localhost): ");
-        // String HOST = sc.nextLine();
+        System.out.print("Enter server IP (e.g., localhost): ");
+        String HOST = sc.nextLine();
 
-        // System.out.print("Enter server PORT (e.g., 9000): ");
-        // int PORT = sc.nextInt();
+        System.out.print("Enter server PORT (e.g., 9000): ");
+        int PORT = sc.nextInt();
 
-        // sc.close();
+        sc.close();
 
-        final String HOST = "localhost";
-        final int PORT = 9000;
+        // final String HOST = "localhost";
+        // final int PORT = 9000;
 
         Client client = new Client(HOST, PORT);
         client.run();
