@@ -19,6 +19,7 @@ public class Server {
     public static final int DELETE_TIMER = 30;  
     private ScheduledExecutorService scheduler;
     private static int MESSAGE_ID = 1;
+    private Map<Integer, String> messages;
 
 
     public Server() {
@@ -27,6 +28,7 @@ public class Server {
             serverSocket.setReuseAddress(true);
             executorPool = Executors.newCachedThreadPool();
             clients = new ConcurrentHashMap<>();
+            messages = new ConcurrentHashMap<>();
             scheduler = Executors.newScheduledThreadPool(5);
         } catch (Exception e){
             e.printStackTrace();
@@ -65,10 +67,6 @@ public class Server {
         clients.remove(username);
     }
 
-    public ClientHandler getClientHandler(String username) {
-        return clients.get(username);
-    }
-
     public boolean sendMessage(String from, String toUser, String message) {
         if(!clients.containsKey(toUser)) return false;
 
@@ -77,10 +75,12 @@ public class Server {
 
         int msgId = MESSAGE_ID++;
 
+        messages.put(msgId, message);
         target.send("MSG#" + msgId + " Private Message from " + from + ": " + message);
 
         scheduler.schedule(() -> {
             target.send("DELETE#" + msgId);
+            messages.remove(msgId);
         }, DELETE_TIMER, TimeUnit.SECONDS);
 
         return true;
@@ -95,10 +95,13 @@ public class Server {
                 ClientHandler target = clients.get(user);
                 int msgId = MESSAGE_ID++;
                 String finalMessage = "MSG#" + msgId + " Broadcast Message from " + from + ": " + message;
+                messages.put(msgId, finalMessage);
+
                 target.send(finalMessage);
 
                 scheduler.schedule(() -> {
                     target.send("DELETE#" + msgId);
+                    messages.remove(msgId);
                 }, DELETE_TIMER, TimeUnit.SECONDS);
             }
         }
