@@ -8,16 +8,26 @@ This project illustrates how two separate programs — a server and a client —
 
 ## 📦 Project Structure
 
-client-server-model/ \n
-├── src/ \n
+client-server-model/
+
+├── src/
+
 │ ├── main/
+
 │ │ ├── java/
+
 │ │ │ ├── server/ # Server application
+
 │ │ │ │ └── Server.java
+
 │ │ │ └── client/ # Client application
+
 │ │ │ └── Client.java
+
 ├── .gitignore
+
 ├── README.md
+
 └── pom.xml (if Maven used) / build.gradle (if Gradle used)
 
 pgsql
