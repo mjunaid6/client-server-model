@@ -8,7 +8,7 @@ This project illustrates how two separate programs — a server and a client —
 
 ## 📦 Project Structure
 
-client-server-model/
+## client-server-model/
 
 ├── src/
 
@@ -28,10 +28,7 @@ client-server-model/
 
 ├── README.md
 
-└── pom.xml (if Maven used) / build.gradle (if Gradle used)
-
-pgsql
-Copy code
+└── pom.xml
 
 ## 🛠️ How It Works
 
