@@ -1,51 +1,128 @@
-# Client-Server Model
+# 🚀 Client-Server Models
 
-A Java implementation of the classic client-server architecture demonstrating networking fundamentals in Java.
+<div align="center">
 
-## 🧠 Problem It Solves
+**A collection of Java implementations demonstrating various client-server communication models.**
 
-This project illustrates how two separate programs — a server and a client — can communicate over a network using TCP sockets. It’s useful for learning networking basics such as request/response, multi-threaded servers, and input/output streams in Java.
+</div>
 
-## 📦 Project Structure
+## 📖 Overview
 
-## client-server-model/
+This repository provides distinct Java projects, each designed to illustrate a particular client-server communication model. It serves as an educational resource to understand fundamental networking concepts, concurrency, and inter-process communication patterns in Java. Each `ModelX` directory contains a self-contained client and server implementation showcasing a specific approach to handling connections and data exchange.
 
-├── src/
+## ✨ Features
 
-│ ├── main/
+This project demonstrates core principles of client-server architecture through multiple models, including (but not limited to, as inferred from directory names):
 
-│ │ ├── java/
+-   **Basic Client-Server Communication**: Simple message exchange between a single client and server.
+-   **Concurrent Server Handling**: Servers capable of handling multiple client connections simultaneously.
+-   **Variations in Communication Patterns**: Different approaches to data serialization, message protocols, or connection management.
 
-│ │ │ ├── server/ # Server application
+## 🛠️ Tech Stack
 
-│ │ │ │ └── Server.java
+**Runtime:**
 
-│ │ │ └── client/ # Client application
+![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white)
 
-│ │ │ └── Client.java
+## 🚀 Quick Start
 
-├── .gitignore
+This section guides you through setting up and running each of the client-server models.
 
-├── README.md
+### Prerequisites
+-   **Java Development Kit (JDK)**: Version 8 or higher is recommended to compile and run the Java applications.
 
-└── pom.xml
+### Installation
 
-## 🛠️ How It Works
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/mjunaid6/client-server-model.git
+    cd client-server-model
+    ```
 
-1. **Server** listens on a port.
-2. **Client** connects and sends messages.
-3. Server processes and replies.
-4. You can extend it with multiple clients using threads.
+### Running the Models
 
-## 🚀 Run
+Each model (`Model5`, `Model5b`, `Model6`) is a separate project. To run a specific model, you need to navigate into its directory, compile the Java source files, and then run the client and server applications, typically in separate terminal windows.
+
+**General Steps to run any model (e.g., `ModelX`):**
+
+1.  **Navigate to the model directory:**
+    ```bash
+    cd ModelX # Replace 'ModelX' with 'Model5', 'Model5b', or 'Model6'
+    ```
+
+2.  **Compile the Java source files:**
+    ```bash
+    javac *.java
+    ```
+    *This command compiles all `.java` files in the current directory into `.class` bytecode files.*
+
+3.  **Run the Server (in one terminal):**
+    ```bash
+    java Server
+    ```
+    *The server will typically start and listen for incoming client connections.*
+
+4.  **Run the Client (in a separate terminal):**
+    ```bash
+    cd ../ModelX # Go back to the model directory if you've opened a new terminal
+    java Client
+    ```
+    *The client will attempt to connect to the server and initiate communication.*
+
+**Example for `Model5`:**
 
 ```bash
-# Compile
-javac server/Server.java
-javac client/Client.java
 
-# Run Server
-java server.Server
+# In your first terminal:
+cd Model5
+javac *.java
+java Server
 
-# Run Client (in separate terminal)
-java client.Client
+# In your second terminal:
+cd Model5
+java Client
+```
+
+Repeat these steps for `Model5b` and `Model6` to explore their respective implementations.
+
+## 📁 Project Structure
+
+```
+client-server-model/
+├── Model5/            # Implementation of Client-Server Model 5
+│   ├── Client.java    # Client-side logic for Model 5
+│   └── Server.java    # Server-side logic for Model 5
+│   └── [...other .java files for Model 5]
+├── Model5b/           # Implementation of Client-Server Model 5b
+│   ├── Client.java    # Client-side logic for Model 5b
+│   └── Server.java    # Server-side logic for Model 5b
+│   └── [...other .java files for Model 5b]
+├── Model6/            # Implementation of Client-Server Model 6
+│   ├── Client.java    # Client-side logic for Model 6
+│   └── Server.java    # Server-side logic for Model 6
+│   └── [...other .java files for Model 6]
+└── README.md          # This README file
+```
+
+## 📄 License
+
+This project is licensed under the **[TODO: Add LICENSE_NAME, e.g., MIT License]** - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+-   Inspired by fundamental network programming concepts in Java.
+
+## 📞 Support & Contact
+
+-   🐛 Issues: [GitHub Issues](https://github.com/mjunaid6/client-server-model/issues)
+
+---
+
+<div align="center">
+
+**⭐ Star this repo if you find it helpful for learning client-server models!**
+
+Made with ❤️ by [Author Name] <!-- TODO: Add author name, e.g., mjunaid6 -->
+
+</div>
+
