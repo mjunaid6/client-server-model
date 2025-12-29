@@ -8,8 +8,8 @@ This project illustrates how two separate programs — a server and a client —
 
 ## 📦 Project Structure
 
-client-server-model/
-├── src/
+client-server-model/ \n
+├── src/ \n
 │ ├── main/
 │ │ ├── java/
 │ │ │ ├── server/ # Server application
