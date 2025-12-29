@@ -104,10 +104,6 @@ client-server-model/
 └── README.md          # This README file
 ```
 
-## 📄 License
-
-This project is licensed under the **[TODO: Add LICENSE_NAME, e.g., MIT License]** - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 -   Inspired by fundamental network programming concepts in Java.
@@ -122,7 +118,7 @@ This project is licensed under the **[TODO: Add LICENSE_NAME, e.g., MIT License]
 
 **⭐ Star this repo if you find it helpful for learning client-server models!**
 
-Made with ❤️ by [Author Name] <!-- TODO: Add author name, e.g., mjunaid6 -->
+Made with ❤️ by Mohammad Junaid
 
 </div>
 
